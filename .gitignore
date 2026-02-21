@@ -1,0 +1,10 @@
+/.idea/
+
+/.gradle/
+/gradle/wrapper/
+/gradlew*
+
+/build/
+
+/storage/messages/
+/storage/packages.yaml

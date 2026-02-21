@@ -1,0 +1,24 @@
+communications:
+  logLevel: INFO
+  requestTimeout: PT30S
+storage:
+  path: storage
+  packagesDirectory: packages
+  packagesFile: packages.yaml
+  messagesDirectory: messages
+notifications:
+  telegram:
+    url: https://api.telegram.org/
+    channels:
+      - "@pkgver"
+launchpad:
+  url: https://api.launchpad.net/1.0/
+  architecture: arm64
+arch:
+  url: https://archlinux.org/
+  architecture: x86_64
+debian:
+  url: https://sources.debian.org/api/
+fedora:
+  url: https://mdapi.fedoraproject.org/
+  releaseNamePattern: "^f\\d+$"

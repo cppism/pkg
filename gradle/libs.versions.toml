@@ -1,0 +1,21 @@
+[versions]
+kotlin = "2.3.10"
+kotlinx-datetime = "0.7.1"
+kotlinx-io = "0.8.2"
+ktor = "3.4.0"
+kaml = "0.104.0"
+logback = "1.5.29"
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+[libraries]
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlinx-io = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinx-io" }
+ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+kaml = { group = "com.charleskorn.kaml", name = "kaml", version.ref = "kaml" }
+logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }

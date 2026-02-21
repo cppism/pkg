@@ -1,0 +1,7 @@
+title: GTest
+arch:
+  source: extra
+debian:
+  name: googletest
+ubuntu:
+  name: googletest

@@ -1,0 +1,7 @@
+title: Linux
+arch:
+  source: core
+fedora:
+  name: kernel
+ubuntu:
+  name: linux-image-generic

@@ -1,0 +1,15 @@
+package pkg.distributions.debian
+
+import pkg.ReleaseName
+import kotlin.time.Clock
+import kotlin.time.Instant
+
+internal data class Release(
+    val name: ReleaseName,
+    val sinceDate: Instant,
+    val dueDate: Instant,
+) {
+    val isSupported: Boolean
+        get() =
+            Clock.System.now() in sinceDate..dueDate
+}
