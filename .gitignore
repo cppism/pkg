@@ -5,7 +5,3 @@
 /gradlew*
 
 /build/
-
-/storage/messages/
-/storage/packages.yaml
-/storage/releases.yaml

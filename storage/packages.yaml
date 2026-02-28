@@ -1,0 +1,142 @@
+cmake:
+  arch:
+    x86_64: 4.3.2
+  debian:
+    trixie: 3.31.6
+    bookworm: 3.25.1
+    bullseye: 3.18.4
+  fedora:
+    f44: 4.3.0
+    f43: 3.31.11
+    f42: 3.31.11
+    f41: 3.30.8
+  ubuntu:
+    resolute: 4.2.3
+    questing: 3.31.6
+    noble: 3.28.3
+    jammy: 3.22.1
+    focal: 3.16.3
+    bionic: 3.10.2
+    xenial: 3.5.1
+    trusty: 2.8.12
+dbus:
+  arch:
+    x86_64: 1.16.2
+  debian:
+    trixie: 1.16.2
+    bookworm: 1.14.10
+    bullseye: 1.12.28
+  fedora:
+    f44: 1.16.2
+    f43: 1.16.0
+    f42: 1.16.0
+    f41: 1.14.10
+  ubuntu:
+    resolute: 1.16.2
+    questing: 1.16.2
+    noble: 1.14.10
+    jammy: 1.12.20
+    focal: 1.12.16
+    bionic: 1.12.2
+    xenial: 1.10.6
+    trusty: 1.6.18
+gcc:
+  arch:
+    x86_64: 16.1.1
+  debian: {}
+  fedora:
+    f44: 16.0.1
+    f43: 15.2.1
+    f42: 15.2.1
+    f41: 14.3.1
+  ubuntu:
+    resolute: 15.2.0
+    questing: 15.2.0
+    noble: 13.2.0
+    jammy: 11.2.0
+    focal: 9.3.0
+    bionic: 7.4.0
+    xenial: 5.3.1
+    trusty: 4.8.2
+gtest:
+  arch:
+    x86_64: 1.17.0
+  debian:
+    trixie: 1.16.0
+    bookworm: 1.12.1
+    bullseye: 1.10.0
+  fedora:
+    f44: 1.17.0
+    f43: 1.15.2
+    f42: 1.15.2
+    f41: 1.14.0
+  ubuntu:
+    resolute: 1.17.0
+    questing: 1.17.0
+    noble: 1.14.0
+    jammy: 1.11.0
+    focal: 1.10.0
+    bionic: 1.8.0
+linux:
+  arch:
+    x86_64: 7.0.5
+  debian:
+    trixie: 6.12.73
+    bookworm: 6.1.159
+    bullseye: 5.10.223
+  fedora:
+    f44: 6.19.10
+    f43: 7.0.4
+    f42: 6.19.14
+    f41: 6.17.10
+  ubuntu:
+    resolute: 7.0.0
+    questing: 6.17.0
+    noble: 6.8.0
+    jammy: 5.15.0
+    focal: 5.4.0
+    bionic: 4.15.0
+    xenial: 4.4.0
+    trusty: 3.13.0
+openssl:
+  arch:
+    x86_64: 3.6.2
+  debian:
+    trixie: 3.5.5
+    bookworm: 3.0.18
+    bullseye: 1.1.1w
+  fedora:
+    f44: 3.5.5
+    f43: 3.5.4
+    f42: 3.2.6
+    f41: 3.2.6
+  ubuntu:
+    resolute: 3.5.5
+    questing: 3.5.3
+    noble: 3.0.13
+    jammy: 3.0.2
+    focal: 1.1.1f
+    bionic: 1.1.1
+    xenial: 1.0.2g
+    trusty: 1.0.1f
+protobuf:
+  arch:
+    x86_64: 34.1
+  debian:
+    trixie: 3.21.12
+    bookworm: 3.21.12
+    bullseye: 3.12.4
+  fedora:
+    f44: 3.19.6
+    f43: 3.19.6
+    f42: 3.19.6
+    f41: 3.19.6
+  ubuntu:
+    resolute: 3.21.12
+    questing: 3.21.12
+    noble: 3.21.12
+    jammy: 3.12.4
+    focal: 3.6.1
+    bionic: 3.0.0
+    xenial: 2.6.1
+    trusty: 2.5.0
