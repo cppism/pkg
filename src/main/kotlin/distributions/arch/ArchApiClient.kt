@@ -10,7 +10,7 @@ import pkg.settings.ArchDistributionPackage
 import pkg.settings.Settings
 
 class ArchApiClient(
-    private val distributionSettings: Settings.Arch,
+    distributionSettings: Settings.Arch,
     communicationsSettings: Settings.Communications,
 ) : ApiClient<ArchDistributionPackage>(
     communicationsSettings = communicationsSettings,
@@ -23,30 +23,36 @@ class ArchApiClient(
             value.substringBefore('+')
     }
 
+    private val releases: List<ReleaseName> =
+        listOf(
+            ReleaseName(distributionSettings.architecture)
+        )
+
+    override suspend fun getReleases(): List<ReleaseName> =
+        releases
+
     override suspend fun getPackageVersions(
         distributionPackage: ArchDistributionPackage,
-    ): Map<ReleaseName, Version> {
-        val packageData: PackageData =
-            httpClient.get(
-                urlString = getPackageUrl(distributionPackage),
+    ): Map<ReleaseName, Version> =
+        getReleases().associateWith { releaseName: ReleaseName ->
+            Version.fromString(
+                extractPackageVersion(
+                    httpClient.get(
+                        urlString = getPackageUrl(releaseName, distributionPackage),
+                    )
+                        .body<PackageData>()
+                        .pkgver
+                ),
             )
-                .body<PackageData>()
-        return mapOf(
-            Pair(
-                ReleaseName(distributionSettings.architecture),
-                Version.fromString(
-                    extractPackageVersion(packageData.pkgver),
-                )
-            )
-        )
-    }
+        }
 
     private fun getPackageUrl(
+        releaseName: ReleaseName,
         distributionPackage: ArchDistributionPackage,
     ): String =
         "packages/" +
                 "${distributionPackage.source}/" +
-                "${distributionSettings.architecture}/" +
+                "$releaseName/" +
                 "${distributionPackage.name}/" +
                 "json/"
 }

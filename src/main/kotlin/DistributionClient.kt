@@ -8,6 +8,9 @@ class DistributionClient<TPackage : DistributionPackage>(
     private val apiClient: ApiClient<TPackage>,
     private val getDistributionPackage: (Package) -> TPackage,
 ) : AutoCloseable {
+    suspend fun getReleases(): List<ReleaseName> =
+        apiClient.getReleases()
+
     suspend fun getPackageVersions(
         pkg: Package,
     ): Map<ReleaseName, Version> =

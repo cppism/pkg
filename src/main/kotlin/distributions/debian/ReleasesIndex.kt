@@ -5,22 +5,22 @@ import pkg.ReleaseName
 import kotlin.time.Instant
 
 internal object ReleasesIndex {
-    val releases: List<Release> =
+    val releases: List<Suite> =
         listOf(
-            Release(
-                ReleaseName("trixie"),
-                getInstant(2025, 8, 9),
-                getInstant(2030, 6, 30),
+            Suite(
+                releaseName = ReleaseName("trixie"),
+                sinceDate = getInstant(2025, 8, 9),
+                dueDate = getInstant(2030, 6, 30),
             ),
-            Release(
-                ReleaseName("bookworm"),
-                getInstant(2023, 6, 10),
-                getInstant(2028, 6, 30),
+            Suite(
+                releaseName = ReleaseName("bookworm"),
+                sinceDate = getInstant(2023, 6, 10),
+                dueDate = getInstant(2028, 6, 30),
             ),
-            Release(
-                ReleaseName("bullseye"),
-                getInstant(2021, 8, 14),
-                getInstant(2026, 8, 31),
+            Suite(
+                releaseName = ReleaseName("bullseye"),
+                sinceDate = getInstant(2021, 8, 14),
+                dueDate = getInstant(2026, 8, 31),
             ),
         )
 
