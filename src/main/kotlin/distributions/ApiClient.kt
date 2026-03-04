@@ -32,6 +32,12 @@ abstract class ApiClient<TPackage : DistributionPackage>(
                     }
                 )
             }
+            install(HttpRequestRetry) {
+                retryOnException(
+                    maxRetries = 2,
+                    retryOnTimeout = true,
+                )
+            }
             install(HttpTimeout) {
                 requestTimeoutMillis =
                     communicationsSettings.requestTimeout.inWholeMilliseconds
