@@ -5,6 +5,7 @@ storage:
   path: storage
   packagesDirectory: packages
   packagesFile: packages.yaml
+  releasesFile: releases.yaml
   messagesDirectory: messages
 notifications:
   telegram:

@@ -26,24 +26,24 @@ class FedoraApiClient(
 
     private var releases: List<ReleaseName>? = null
 
-    private suspend fun getReleases(): List<ReleaseName> {
-        return httpClient.get(
-            urlString = "branches"
-        )
-            .body<List<String>>()
-            .filter(releaseNamePattern::matches)
-            .map(::ReleaseName)
-            .reversed()
+    override suspend fun getReleases(): List<ReleaseName> {
+        mutex.withLock {
+            if (releases == null)
+                releases = httpClient.get(
+                    urlString = "branches"
+                )
+                    .body<List<String>>()
+                    .filter(releaseNamePattern::matches)
+                    .map(::ReleaseName)
+                    .reversed()
+        }
+        return checkNotNull(releases)
     }
 
     override suspend fun getPackageVersions(
         distributionPackage: DistributionPackage,
     ): Map<ReleaseName, Version> =
-        mutex.withLock {
-            if (releases == null)
-                releases = getReleases()
-            checkNotNull(releases)
-        }
+        getReleases()
             .associateWith { releaseName: ReleaseName ->
                 val packageInfo: PackageInfo =
                     httpClient.get(

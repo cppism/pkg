@@ -52,48 +52,52 @@ abstract class LaunchpadApiClient(
 
     private var distributionData: DistributionData? = null
 
-    private suspend fun getDistributionData(): DistributionData {
-        val distribution: Distribution =
-            httpClient.get(
-                urlString = distributionName
-            )
-                .body()
-        val releases: List<DistributionData.Release> =
-            httpClient.getCollection<DistroSeries>(
-                urlString = distribution.seriesCollectionLink,
-            )
-                .filter(DistroSeries::supported)
-                .map { distroSeries: DistroSeries ->
-                    val distroArchSeries: DistroArchSeries =
-                        httpClient.get(
-                            urlString = distroSeries.selfLink
-                        ) {
-                            url {
-                                parameter("ws.op", "getDistroArchSeries")
-                                parameter("archtag", distributionSettings.architecture)
+    private suspend fun getDistributionData(): DistributionData =
+        mutex.withLock {
+            distributionData?.let { return it }
+
+            val distribution: Distribution =
+                httpClient.get(
+                    urlString = distributionName
+                )
+                    .body()
+            val releases: List<DistributionData.Release> =
+                httpClient.getCollection<DistroSeries>(
+                    urlString = distribution.seriesCollectionLink,
+                )
+                    .filter(DistroSeries::supported)
+                    .map { distroSeries: DistroSeries ->
+                        val distroArchSeries: DistroArchSeries =
+                            httpClient.get(
+                                urlString = distroSeries.selfLink
+                            ) {
+                                url {
+                                    parameter("ws.op", "getDistroArchSeries")
+                                    parameter("archtag", distributionSettings.architecture)
+                                }
                             }
-                        }
-                            .body()
-                    DistributionData.Release(
-                        name = ReleaseName(distroSeries.name),
-                        architectureLink = distroArchSeries.selfLink,
-                    )
-                }
-        return DistributionData(
-            mainArchiveLink = distribution.mainArchiveLink,
-            releases = releases,
-        )
-    }
+                                .body()
+                        DistributionData.Release(
+                            name = ReleaseName(distroSeries.name),
+                            architectureLink = distroArchSeries.selfLink,
+                        )
+                    }
+            distributionData = DistributionData(
+                mainArchiveLink = distribution.mainArchiveLink,
+                releases = releases,
+            )
+            checkNotNull(distributionData)
+        }
+
+    override suspend fun getReleases(): List<ReleaseName> =
+        getDistributionData().releases
+            .map(DistributionData.Release::name)
 
     override suspend fun getPackageVersions(
         distributionPackage: DistributionPackage,
     ): Map<ReleaseName, Version> {
         val distribution: DistributionData =
-            mutex.withLock {
-                if (distributionData == null)
-                    distributionData = getDistributionData()
-                checkNotNull(distributionData)
-            }
+            getDistributionData()
         val binaryPackages: Map<String, List<BinaryPackagePublishingHistory>> =
             httpClient.getCollection<BinaryPackagePublishingHistory>(
                 urlString = distribution.mainArchiveLink

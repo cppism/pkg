@@ -24,15 +24,17 @@ class DebianApiClient(
             value.substringBefore('-')
     }
 
+    private val releases: List<ReleaseName> =
+        ReleasesIndex.releases
+            .filter(Suite::isSupported)
+            .map(Suite::releaseName)
+
+    override suspend fun getReleases(): List<ReleaseName> =
+        releases
+
     override suspend fun getPackageVersions(
         distributionPackage: DistributionPackage,
     ): Map<ReleaseName, Version> {
-        val releases: HashSet<ReleaseName> =
-            ReleasesIndex.releases
-                .filter(Release::isSupported)
-                .map(Release::name)
-                .toHashSet()
-
         return httpClient.get(
             urlString = "src/${distributionPackage.name}/",
         )
@@ -40,10 +42,13 @@ class DebianApiClient(
             .versions
             .flatMap { packageVersion: PackageVersion ->
                 packageVersion.suites
-                    .map(::ReleaseName)
-                    .filter(releases::contains)
-                    .map {
-                        Pair(it, packageVersion.version)
+                    .filter { suite: String ->
+                        releases.any {
+                            suite == it.value
+                        }
+                    }
+                    .map { suite: String ->
+                        Pair(ReleaseName(suite), packageVersion.version)
                     }
             }
             .groupBy({ it.first }) { it.second }

@@ -1,10 +1,8 @@
 package pkg.notifications.telegram.api
 
 import kotlinx.serialization.Serializable
-import pkg.Distribution
-import pkg.PackageName
-import pkg.PackagesUpdates
-import pkg.ReleaseName
+import pkg.*
+import pkg.settings.Package
 
 @Serializable
 class TelegramMessage(
@@ -15,9 +13,39 @@ class TelegramMessage(
     companion object {
         fun fromUpdate(
             channel: String,
+            distribution: Distribution,
+            releaseName: ReleaseName,
+            packages: Map<Package, Version>,
+        ): TelegramMessage {
+            val entities = mutableListOf<MessageEntity>()
+            val text: String =
+                buildString {
+                    appendEntity(
+                        type = MessageEntity.Type.BOLD,
+                        text = "${distribution.name.lowercase()} $releaseName",
+                        entities = entities,
+                    )
+                    appendLine()
+                    packages.forEach { (pkg, version) ->
+                        append(pkg.title)
+                        append(": ")
+                        appendLine(version)
+                    }
+                    appendLine()
+                    appendEntity(
+                        type = MessageEntity.Type.HASHTAG,
+                        text = "#${distribution.name}_${releaseName}".lowercase(),
+                        entities = entities,
+                    )
+                }
+            return TelegramMessage(channel, text, entities)
+        }
+
+        fun fromUpdate(
+            channel: String,
             packageName: PackageName,
             packageTitle: String,
-            updates: Map<Distribution, Map<ReleaseName, PackagesUpdates.Diff>>,
+            updates: Map<Distribution, Map<ReleaseName, Updates.Packages.Diff>>,
         ): TelegramMessage {
             val entities = mutableListOf<MessageEntity>()
             val hashtags = mutableListOf(
@@ -33,9 +61,9 @@ class TelegramMessage(
                     appendLine()
                     updates.forEach { (distribution, releases) ->
                         appendLine()
-                        appendLine(distribution.title)
+                        appendLine(distribution.name.lowercase())
                         if (releases.size == 1) {
-                            val diff: PackagesUpdates.Diff =
+                            val diff: Updates.Packages.Diff =
                                 releases.values.single()
                             if (diff.isChanged) {
                                 append(diff.from)

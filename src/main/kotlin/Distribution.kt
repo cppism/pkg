@@ -4,18 +4,16 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class Distribution(
-    val title: String,
-) {
+enum class Distribution {
     @SerialName("arch")
-    ARCH("Arch"),
+    ARCH,
 
     @SerialName("debian")
-    DEBIAN("Debian"),
+    DEBIAN,
 
     @SerialName("fedora")
-    FEDORA("Fedora"),
+    FEDORA,
 
     @SerialName("ubuntu")
-    UBUNTU("Ubuntu"),
+    UBUNTU,
 }

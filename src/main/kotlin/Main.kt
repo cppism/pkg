@@ -33,13 +33,18 @@ suspend fun main() {
     val storagePath = Path(settings.storage.path)
     val packagesDirectoryPath = Path(storagePath, settings.storage.packagesDirectory)
     val packagesFilePath = Path(storagePath, settings.storage.packagesFile)
+    val releasesFilePath = Path(storagePath, settings.storage.releasesFile)
     val messagesDirectoryPath = Path(storagePath, settings.storage.messagesDirectory)
 
     val packages: Map<PackageName, Package> =
         getPackages(packagesDirectoryPath)
 
-    val updates: PackagesUpdates =
+    val updates: Updates =
         DistributionClientsMap(settings).use { distributionClients: DistributionClientsMap ->
+            val distributionsReleases: Map<Distribution, List<ReleaseName>> =
+                distributionClients.mapValues { distributionClient: Map.Entry<Distribution, DistributionClient<out DistributionPackage>> ->
+                    distributionClient.value.getReleases()
+                }
             val packagesVersions = PackagesVersions(
                 packages.mapValues { pkg: Map.Entry<PackageName, Package> ->
                     distributionClients.mapValues { distributionClient: Map.Entry<Distribution, DistributionClient<out DistributionPackage>> ->
@@ -47,7 +52,10 @@ suspend fun main() {
                     }
                 }
             )
-            savePackages(packagesVersions, packagesFilePath)
+            Updates(
+                releases = saveReleases(distributionsReleases, packagesVersions, releasesFilePath),
+                packages = savePackages(packagesVersions, packagesFilePath),
+            )
         }
     dumpMessages(
         updates,
@@ -85,7 +93,7 @@ fun getPackages(
 private fun savePackages(
     packagesVersions: PackagesVersions,
     packagesFilePath: Path,
-): PackagesUpdates {
+): Updates.Packages {
     val from: PackagesVersions =
         try {
             FileSystem.readYamlFile(yaml, packagesFilePath)
@@ -97,25 +105,99 @@ private fun savePackages(
         yaml = yaml,
         path = packagesFilePath,
     )
-    return PackagesUpdates(
+    return Updates.Packages(
         from = from,
         to = packagesVersions,
     )
 }
 
+private fun saveReleases(
+    distributionsReleases: Map<Distribution, List<ReleaseName>>,
+    packagesVersions: PackagesVersions,
+    releasesFilePath: Path,
+): Updates.Releases {
+    val from: Map<Distribution, List<ReleaseName>> =
+        try {
+            FileSystem.readYamlFile(yaml, releasesFilePath)
+        } catch (_: FileNotFoundException) {
+            emptyMap()
+        }
+    FileSystem.writeYamlFile(
+        value = distributionsReleases,
+        yaml = yaml,
+        path = releasesFilePath,
+    )
+    return Updates.Releases(from, distributionsReleases, packagesVersions)
+}
+
 private fun dumpMessages(
-    updates: PackagesUpdates,
+    updates: Updates,
     packages: Map<PackageName, Package>,
     messagesDirectoryPath: Path,
     settings: Settings.Notifications,
 ) {
-    val epochSeconds: Long =
-        Clock.System.now().epochSeconds
     val telegramMessagesPath: Path =
         FileSystem.createDirectory(
             messagesDirectoryPath,
             "TELEGRAM",
         )
+    val timestamp: Long =
+        Clock.System.now().epochSeconds
+    dumpUpdateMessages(
+        updates.releases,
+        packages,
+        telegramMessagesPath,
+        settings,
+        timestamp + 1,
+    )
+    dumpUpdateMessages(
+        updates.packages,
+        packages,
+        telegramMessagesPath,
+        settings,
+        timestamp + 2,
+    )
+}
+
+private fun dumpUpdateMessages(
+    updates: Updates.Releases,
+    packages: Map<PackageName, Package>,
+    telegramMessagesPath: Path,
+    settings: Settings.Notifications,
+    timestamp: Long,
+) {
+    updates.forEach { (distribution, releases) ->
+        releases.forEach { (releaseName: ReleaseName, releasePackages: Map<PackageName, Version>) ->
+            settings.telegram.channels.forEach { channel: String ->
+                val message: TelegramMessage =
+                    TelegramMessage.fromUpdate(
+                        channel = channel,
+                        distribution = distribution,
+                        releaseName = releaseName,
+                        packages = releasePackages.mapKeys {
+                            packages.getValue(it.key)
+                        },
+                    )
+                FileSystem.writeYamlFile(
+                    value = message,
+                    yaml = yaml,
+                    path = Path(
+                        telegramMessagesPath,
+                        "$timestamp-${distribution.name}-$releaseName-$channel.yaml",
+                    ),
+                )
+            }
+        }
+    }
+}
+
+private fun dumpUpdateMessages(
+    updates: Updates.Packages,
+    packages: Map<PackageName, Package>,
+    telegramMessagesPath: Path,
+    settings: Settings.Notifications,
+    timestamp: Long,
+) {
     updates.forEach { (packageName, update) ->
         val pkg: Package =
             packages.getValue(packageName)
@@ -127,14 +209,13 @@ private fun dumpMessages(
                     packageTitle = pkg.title,
                     updates = update,
                 )
-            val messagePath = Path(
-                telegramMessagesPath,
-                "$epochSeconds-$packageName-$channel.yaml",
-            )
             FileSystem.writeYamlFile(
                 value = message,
                 yaml = yaml,
-                path = messagePath,
+                path = Path(
+                    telegramMessagesPath,
+                    "$timestamp-$packageName-$channel.yaml",
+                ),
             )
         }
     }

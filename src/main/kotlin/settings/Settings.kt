@@ -25,6 +25,7 @@ data class Settings(
         val path: String,
         val packagesDirectory: String,
         val packagesFile: String,
+        val releasesFile: String,
         val messagesDirectory: String,
     )
 

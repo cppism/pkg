@@ -47,6 +47,8 @@ abstract class ApiClient<TPackage : DistributionPackage>(
             }
         }
 
+    abstract suspend fun getReleases(): List<ReleaseName>
+
     abstract suspend fun getPackageVersions(
         distributionPackage: TPackage,
     ): Map<ReleaseName, Version>
