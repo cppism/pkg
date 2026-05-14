@@ -19,6 +19,27 @@ cmake:
     bionic: 3.10.2
     xenial: 3.5.1
     trusty: 2.8.12
+curl:
+  arch:
+    x86_64: 8.20.0
+  debian:
+    trixie: 8.14.1
+    bookworm: 7.88.1
+    bullseye: 7.74.0
+  fedora:
+    f44: 8.18.0
+    f43: 8.15.0
+    f42: 8.11.1
+    f41: 8.9.1
+  ubuntu:
+    resolute: 8.18.0
+    questing: 8.14.1
+    noble: 8.5.0
+    jammy: 7.81.0
+    focal: 7.68.0
+    bionic: 7.58.0
+    xenial: 7.47.0
+    trusty: 7.35.0
 dbus:
   arch:
     x86_64: 1.16.2
@@ -79,14 +100,14 @@ gtest:
     bionic: 1.8.0
 linux:
   arch:
-    x86_64: 7.0.5
+    x86_64: 7.0.6
   debian:
     trixie: 6.12.73
     bookworm: 6.1.159
     bullseye: 5.10.223
   fedora:
     f44: 6.19.10
-    f43: 7.0.4
+    f43: 7.0.6
     f42: 6.19.14
     f41: 6.17.10
   ubuntu:
