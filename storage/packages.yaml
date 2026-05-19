@@ -63,7 +63,7 @@ gcc:
     x86_64: 16.1.1
   debian: {}
   fedora:
-    f44: 16.0.1
+    f44: 16.1.1
     f43: 15.2.1
     f42: 15.2.1
   ubuntu:
@@ -101,7 +101,7 @@ linux:
     bookworm: 6.1.170
     bullseye: 5.10.223
   fedora:
-    f44: 7.0.9
+    f44: 6.19.10
     f43: 7.0.9
     f42: 6.19.14
   ubuntu:
