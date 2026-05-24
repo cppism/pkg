@@ -101,8 +101,8 @@ linux:
     bookworm: 6.1.170
     bullseye: 5.10.223
   fedora:
-    f44: 6.19.10
-    f43: 7.0.9
+    f44: 7.0.10
+    f43: 7.0.10
     f42: 6.19.14
   ubuntu:
     resolute: 7.0.0
