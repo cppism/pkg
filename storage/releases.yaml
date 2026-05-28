@@ -7,7 +7,6 @@ debian:
 fedora:
 - f44
 - f43
-- f42
 ubuntu:
 - resolute
 - questing

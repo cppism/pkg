@@ -8,7 +8,6 @@ cmake:
   fedora:
     f44: 4.3.0
     f43: 3.31.11
-    f42: 3.31.11
   ubuntu:
     resolute: 4.2.3
     questing: 3.31.6
@@ -28,7 +27,6 @@ curl:
   fedora:
     f44: 8.18.0
     f43: 8.15.0
-    f42: 8.11.1
   ubuntu:
     resolute: 8.18.0
     questing: 8.14.1
@@ -48,7 +46,6 @@ dbus:
   fedora:
     f44: 1.16.2
     f43: 1.16.2
-    f42: 1.16.0
   ubuntu:
     resolute: 1.16.2
     questing: 1.16.2
@@ -65,7 +62,6 @@ gcc:
   fedora:
     f44: 16.0.1
     f43: 15.2.1
-    f42: 15.2.1
   ubuntu:
     resolute: 15.2.0
     questing: 15.2.0
@@ -85,7 +81,6 @@ gtest:
   fedora:
     f44: 1.17.0
     f43: 1.15.2
-    f42: 1.15.2
   ubuntu:
     resolute: 1.17.0
     questing: 1.17.0
@@ -103,7 +98,6 @@ linux:
   fedora:
     f44: 6.19.10
     f43: 7.0.10
-    f42: 6.19.14
   ubuntu:
     resolute: 7.0.0
     questing: 6.17.0
@@ -123,7 +117,6 @@ openssl:
   fedora:
     f44: 3.5.5
     f43: 3.5.4
-    f42: 3.2.6
   ubuntu:
     resolute: 3.5.5
     questing: 3.5.3
@@ -143,7 +136,6 @@ protobuf:
   fedora:
     f44: 3.19.6
     f43: 3.19.6
-    f42: 3.19.6
   ubuntu:
     resolute: 3.21.12
     questing: 3.21.12
