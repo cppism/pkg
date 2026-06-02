@@ -128,7 +128,7 @@ openssl:
     trusty: 1.0.1f
 protobuf:
   arch:
-    x86_64: 34.1
+    x86_64: 35.0
   debian:
     trixie: 3.21.12
     bookworm: 3.21.12
