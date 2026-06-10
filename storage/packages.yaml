@@ -109,7 +109,7 @@ linux:
     trusty: 3.13.0
 openssl:
   arch:
-    x86_64: 3.6.2
+    x86_64: 3.6.3
   debian:
     trixie: 3.5.6
     bookworm: 3.0.20
