@@ -96,8 +96,8 @@ linux:
     bookworm: 6.1.170
     bullseye: 5.10.223
   fedora:
-    f44: 6.19.10
-    f43: 7.0.12
+    f44: 7.0.13
+    f43: 7.0.13
   ubuntu:
     resolute: 7.0.0
     questing: 6.17.0
