@@ -90,7 +90,7 @@ gtest:
     bionic: 1.8.0
 linux:
   arch:
-    x86_64: 7.0.12
+    x86_64: 7.0.13
   debian:
     trixie: 6.12.86
     bookworm: 6.1.170
@@ -128,7 +128,7 @@ openssl:
     trusty: 1.0.1f
 protobuf:
   arch:
-    x86_64: 35.0
+    x86_64: 35.1
   debian:
     trixie: 3.21.12
     bookworm: 3.21.12
