@@ -16,7 +16,7 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
       - run: |
           git config user.name "GitHub Actions"
-          git config user.mail "actions@github.com"
+          git config user.email "actions@github.com"
           git add --all
           git commit --allow-empty -m "$(date +'%Y-%m-%d')"
           git push
