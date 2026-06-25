@@ -19,7 +19,7 @@ cmake:
     trusty: 2.8.12
 curl:
   arch:
-    x86_64: 8.20.0
+    x86_64: 8.21.0
   debian:
     trixie: 8.14.1
     bookworm: 7.88.1
