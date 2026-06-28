@@ -90,14 +90,14 @@ gtest:
     bionic: 1.8.0
 linux:
   arch:
-    x86_64: 7.0.13
+    x86_64: 7.0.14
   debian:
     trixie: 6.12.86
     bookworm: 6.1.170
     bullseye: 5.10.223
   fedora:
-    f44: 7.0.13
-    f43: 7.0.13
+    f44: 7.0.14
+    f43: 7.0.14
   ubuntu:
     resolute: 7.0.0
     questing: 6.17.0
