@@ -90,7 +90,7 @@ gtest:
     bionic: 1.8.0
 linux:
   arch:
-    x86_64: 7.1.2
+    x86_64: 7.1.3
   debian:
     trixie: 6.12.86
     bookworm: 6.1.170
