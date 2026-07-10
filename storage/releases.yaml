@@ -9,7 +9,6 @@ fedora:
 - f43
 ubuntu:
 - resolute
-- questing
 - noble
 - jammy
 - focal
