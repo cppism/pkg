@@ -58,7 +58,7 @@ gcc:
   debian: {}
   fedora:
     f44: 16.0.1
-    f43: 15.2.1
+    f43: 15.3.1
   ubuntu:
     resolute: 15.2.0
     noble: 13.2.0
