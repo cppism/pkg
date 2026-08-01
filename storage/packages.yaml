@@ -1,6 +1,6 @@
 cmake:
   arch:
-    x86_64: 4.4.1
+    x86_64: 4.4.2
   debian:
     trixie: 3.31.6
     bookworm: 3.25.1
