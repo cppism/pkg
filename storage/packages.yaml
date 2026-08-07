@@ -85,13 +85,13 @@ gtest:
     bionic: 1.8.0
 linux:
   arch:
-    x86_64: 7.1.5
+    x86_64: 7.1.6
   debian:
     trixie: 6.12.94
     bookworm: 6.1.176
     bullseye: 5.10.223
   fedora:
-    f44: 7.1.6
+    f44: 7.1.7
     f43: 7.1.6
   ubuntu:
     resolute: 7.0.0
