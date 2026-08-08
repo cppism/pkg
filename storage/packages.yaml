@@ -92,7 +92,7 @@ linux:
     bullseye: 5.10.223
   fedora:
     f44: 7.1.7
-    f43: 7.1.6
+    f43: 7.1.7
   ubuntu:
     resolute: 7.0.0
     noble: 6.8.0
