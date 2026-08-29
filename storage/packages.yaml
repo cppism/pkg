@@ -1,6 +1,6 @@
 cmake:
   arch:
-    x86_64: 4.4.2
+    x86_64: 4.4.3
   debian:
     trixie: 3.31.6
     bookworm: 3.25.1
@@ -85,14 +85,14 @@ gtest:
     bionic: 1.8.0
 linux:
   arch:
-    x86_64: 7.1.9
+    x86_64: 7.1.11
   debian:
     trixie: 6.12.94
     bookworm: 6.1.176
     bullseye: 5.10.223
   fedora:
-    f44: 7.1.10
-    f43: 7.1.10
+    f44: 7.1.11
+    f43: 7.1.11
   ubuntu:
     resolute: 7.0.0
     noble: 6.8.0
@@ -121,7 +121,7 @@ openssl:
     trusty: 1.0.1f
 protobuf:
   arch:
-    x86_64: 35.1
+    x86_64: 36.0
   debian:
     trixie: 3.21.12
     bookworm: 3.21.12
