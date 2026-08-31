@@ -3,7 +3,6 @@ arch:
 debian:
 - trixie
 - bookworm
-- bullseye
 fedora:
 - f44
 - f43
