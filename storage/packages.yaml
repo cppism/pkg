@@ -86,8 +86,8 @@ linux:
     trixie: 6.12.94
     bookworm: 6.1.176
   fedora:
-    f44: 7.1.13
-    f43: 7.1.13
+    f44: 7.2.4
+    f43: 7.2.4
   ubuntu:
     resolute: 7.0.0
     noble: 6.8.0
@@ -115,7 +115,7 @@ openssl:
     trusty: 1.0.1f
 protobuf:
   arch:
-    x86_64: 36.0
+    x86_64: 36.1
   debian:
     trixie: 3.21.12
     bookworm: 3.21.12
