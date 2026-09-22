@@ -86,8 +86,8 @@ linux:
     trixie: 6.12.107
     bookworm: 6.1.176
   fedora:
-    f44: 7.2.6
-    f43: 7.2.6
+    f44: 7.2.7
+    f43: 7.2.7
   ubuntu:
     resolute: 7.0.0
     noble: 6.8.0
