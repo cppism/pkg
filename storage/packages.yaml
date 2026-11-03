@@ -5,6 +5,7 @@ cmake:
     trixie: 3.31.6
     bookworm: 3.25.1
   fedora:
+    f45: 4.3.0
     f44: 4.3.0
     f43: 3.31.11
   ubuntu:
@@ -23,6 +24,7 @@ curl:
     trixie: 8.14.1
     bookworm: 7.88.1
   fedora:
+    f45: 8.21.0
     f44: 8.18.0
     f43: 8.15.0
   ubuntu:
@@ -41,6 +43,7 @@ dbus:
     trixie: 1.16.2
     bookworm: 1.14.10
   fedora:
+    f45: 1.16.2
     f44: 1.16.2
     f43: 1.16.2
   ubuntu:
@@ -57,6 +60,7 @@ gcc:
     x86_64: 16.2.1
   debian: {}
   fedora:
+    f45: 16.2.1
     f44: 16.0.1
     f43: 15.3.1
   ubuntu:
@@ -75,6 +79,7 @@ gtest:
     trixie: 1.16.0
     bookworm: 1.12.1
   fedora:
+    f45: 1.17.0
     f44: 1.17.0
     f43: 1.15.2
   ubuntu:
@@ -86,13 +91,14 @@ gtest:
     bionic: 1.8.0
 linux:
   arch:
-    x86_64: 7.2.11
+    x86_64: 7.2.14
   debian:
     trixie: 6.12.107
     bookworm: 6.1.176
   fedora:
-    f44: 7.2.13
-    f43: 7.2.13
+    f45: 7.2.11
+    f44: 7.2.15
+    f43: 7.2.15
   ubuntu:
     stonking: 7.3.0
     resolute: 7.0.0
@@ -109,6 +115,7 @@ openssl:
     trixie: 3.5.7
     bookworm: 3.0.20
   fedora:
+    f45: 4.0.3
     f44: 3.5.9
     f43: 3.5.9
   ubuntu:
@@ -127,6 +134,7 @@ protobuf:
     trixie: 3.21.12
     bookworm: 3.21.12
   fedora:
+    f45: 33.5
     f44: 3.19.6
     f43: 3.19.6
   ubuntu:

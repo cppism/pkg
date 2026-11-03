@@ -4,6 +4,7 @@ debian:
 - trixie
 - bookworm
 fedora:
+- f45
 - f44
 - f43
 ubuntu:
