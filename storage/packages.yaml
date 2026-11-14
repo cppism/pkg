@@ -43,8 +43,8 @@ dbus:
     trixie: 1.16.2
     bookworm: 1.14.10
   fedora:
-    f45: 1.16.2
-    f44: 1.16.2
+    f45: 1.16.4
+    f44: 1.16.4
     f43: 1.16.2
   ubuntu:
     stonking: 1.16.2
