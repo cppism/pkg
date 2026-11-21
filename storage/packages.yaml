@@ -93,7 +93,7 @@ linux:
   arch:
     x86_64: 7.3.5
   debian:
-    trixie: 6.12.107
+    trixie: 6.12.117
     bookworm: 6.1.176
   fedora:
     f45: 7.3.5
@@ -112,7 +112,7 @@ openssl:
   arch:
     x86_64: 4.1.0
   debian:
-    trixie: 3.5.7
+    trixie: 3.5.9
     bookworm: 3.0.20
   fedora:
     f45: 4.0.3
