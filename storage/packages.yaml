@@ -96,9 +96,9 @@ linux:
     trixie: 6.12.117
     bookworm: 6.1.176
   fedora:
-    f45: 7.3.5
-    f44: 7.3.5
-    f43: 7.3.5
+    f45: 7.2.11
+    f44: 7.3.6
+    f43: 7.3.6
   ubuntu:
     stonking: 7.3.0
     resolute: 7.0.0
